@@ -1,56 +1,53 @@
-irb
+
 # intro #
 "Welcome to Secret Number Game by Archana"
-player_name=gets "And your Name is?"
-puts Welcome "player_name"
-"The computer selectes a secret number from 1-10. You have 3 tries to guess the secret number."
+player_name=gets"And your Name is?"
+puts "Welcome #{player_name}"
+puts "The Secret Number Game is simple. The computer selectes a secret number from 1-10." 
+puts "You have 3 tries to guess the secret number. Lets get started."
 # intro end#
 
 #set up variables#
 secret_number=[1,2..10]
-x=random (secret_number) # x=computer guess #
-guess=gets"Select an integer from 1 to 10"
+x=rand(secret_number) # x=computer guess #
+guess=gets"Select an integer from 1 to 10:"
+diff=x-guess #difference between secret number and guess to give user direction#
+guess_count=1
 #set up variables end#
 
-
-guess=gets"Lets get started. Select an integer from 1 to 10:"
-
 #method to check guess#
-def check #
-	if guess==x#
-	"Congratulations you guessed right. You won the game"
+def check 
+	if guess==x
+	puts"Congratulations you guessed right. You won the game"
 	end
-#method to check guess#
+#method to check guess end#
 
 if guess==x 
-	"Congratulations! You guessed right on your first try."
-elsif
-	
-	#direction to user"
-	
-	diff=x-guess
+	puts"Congratulations! You guessed right on your first try. You win....Wohooo!!!"
 
-		#high guess test#
-		if diff>0 and >4
-		puts "Sorry "#{guess}" is not the secret number. You guessed too high. lets try again"
-		
-		if diff<0 and <-4
-		puts "Sorry "#{guess}" is not the secret number. You guessed too high. lets try again"
+#direction to user#
+     	
+     	#high guess test#
+		elsif diff>-4
+		puts "Sorry #{guess} is not the secret number. You guessed too high. lets try again"
+	
+		#low guess test#
+		elsif diff>4
+		puts "Sorry #{guess} is not the secret number. You guessed too low. lets try again"
 
 		#close guess test#
-		if diff>0 and <3
-		puts "Sorry "#{guess}" is not the secret number, but you're close. lets try again"
+		elsif
+		puts "Sorry #{guess} is not the secret number, but you're close. lets try again"
 		
-		if diff<0 and <-3
-		puts "Sorry "#{guess}" is not the secret number, but you're close. lets try again"
-		
-	#direction to user end#
+#direction to user end#
 	
-	guess_count=guess+1
-	guess =gets "This is your #{guess_count}to.s try. Select an integer from 1 to 10:""
+else	
+	guess_count +=1
+	if guess_count<=3
+	guess=gets "This is your #{guess_count}to.s try. Select an integer from 1 to 10:"
+	check #calling check method#
 
-	# call check method#
-
+	else
 	puts "Sorry you lost the game. The secret number is #{x}.to.s"
 
 end
